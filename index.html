@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Kaspi.kz — Удостоверение личности</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    .header {
+      font-size: 24px;
+      font-weight: bold;
+      color: #d10000;
+      margin-bottom: 20px;
+    }
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 800px;
+      width: 100%;
+    }
+    .document, .info {
+      flex: 1;
+      min-width: 250px;
+    }
+    .document label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .document img {
+      width: 100%;
+      max-width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .document input[type="file"] {
+      display: none;
+    }
+    .upload-btn {
+      display: inline-block;
+      background-color: #e0e0e0;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .info input {
+      display: block;
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 100%;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .info label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 10px 15px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      font-size: 14px;
+    }
+    .action-btn:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">Удостоверение личности</div>
+
+  <div class="container">
+    <div class="document">
+      <label for="photoUpload">Документ</label>
+      <img id="photoPreview" src="https://i.imgur.com/GUiIzGs.jpg" alt="Фото документа">
+      <label class="upload-btn" for="photoUpload">+ Загрузить фото</label>
+      <input type="file" id="photoUpload" accept="image/*">
+    </div>
+    <div class="info">
+      <label>ФИО</label>
+      <input type="text" placeholder="Введите ФИО">
+      <label>Дата рождения</label>
+      <input type="text" placeholder="дд.мм.гггг">
+      <label>ИИН</label>
+      <input type="text" placeholder="Введите ИИН">
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="action-btn">📱 Предъявить документ</button>
+    <button class="action-btn">📤 Отправить документ</button>
+  </div>
+
+  <script>
+    const uploadInput = document.getElementById('photoUpload');
+    const preview = document.getElementById('photoPreview');
+
+    uploadInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          preview.src = evt.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>
